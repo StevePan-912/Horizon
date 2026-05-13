@@ -5,70 +5,70 @@ date: 2026-05-13
 lang: en
 ---
 
-> From 25 items, 14 important content pieces were selected
+> From 27 items, 14 important content pieces were selected
 
 ---
 
-1. [Needle: 26M Parameter Model for Tool Calling](#item-1) ⭐️ 8.0/10
+1. [Needle: 26M Parameter Tool-Calling Model Runs on Consumer Devices](#item-1) ⭐️ 8.0/10
 2. [CERT releases six CVEs for serious dnsmasq vulnerabilities](#item-2) ⭐️ 8.0/10
 3. [DuckDB Introduces Quack Client-Server Protocol](#item-3) ⭐️ 8.0/10
-4. [AI coding agents must reduce maintenance costs proportionally to productivity gains](#item-4) ⭐️ 8.0/10
-5. [Rendering the Sky, Sunsets, and Planets](#item-5) ⭐️ 7.0/10
-6. [Hashimoto: Technical decision makers prioritize job security over innovation](#item-6) ⭐️ 7.0/10
-7. [LLM 0.32a2 adds OpenAI reasoning tokens support](#item-7) ⭐️ 7.0/10
-8. [AI Writing Tools Create 'Zombie Internet' Problem](#item-8) ⭐️ 7.0/10
-9. [Shopify's AI coding agent River works in public Slack channels](#item-9) ⭐️ 7.0/10
-10. [Restore full BambuNetwork support for Bambu Lab printers](#item-10) ⭐️ 6.0/10
-11. [Why senior developers fail to communicate their expertise](#item-11) ⭐️ 6.0/10
-12. [Reimagining the mouse pointer for the AI era](#item-12) ⭐️ 6.0/10
-13. [Obsidian Announces Automated Plugin Review System](#item-13) ⭐️ 6.0/10
+4. [AI coding agents must reduce maintenance costs proportionally](#item-4) ⭐️ 8.0/10
+5. [Why senior developers fail to communicate their expertise](#item-5) ⭐️ 7.0/10
+6. [Comprehensive Guide to Atmospheric Scattering Rendering](#item-6) ⭐️ 7.0/10
+7. [CSP Allow-list Experiment Demonstrates Novel Bypass Technique](#item-7) ⭐️ 7.0/10
+8. [LLM library adds OpenAI reasoning token support](#item-8) ⭐️ 7.0/10
+9. [AI Writing Tools Create 'Zombie Internet' Problem](#item-9) ⭐️ 7.0/10
+10. [Shopify's AI coding agent River operates in public Slack channels](#item-10) ⭐️ 7.0/10
+11. [Restore full BambuNetwork support for Bambu Lab printers](#item-11) ⭐️ 6.0/10
+12. [Obsidian Announces New Plugin Community Site and Automated Review System](#item-12) ⭐️ 6.0/10
+13. [Hashimoto on Technical Decision Makers Prioritizing Job Security](#item-13) ⭐️ 6.0/10
 14. [Using LLM in shebang lines of scripts](#item-14) ⭐️ 6.0/10
 
 ---
 
 <a id="item-1"></a>
-## [Needle: 26M Parameter Model for Tool Calling](https://github.com/cactus-compute/needle) ⭐️ 8.0/10
+## [Needle: 26M Parameter Tool-Calling Model Runs on Consumer Devices](https://github.com/cactus-compute/needle) ⭐️ 8.0/10
 
-Cactus团队开源了Needle，这是一个2600万参数的函数调用模型，采用纯注意力架构（无MLP层），在消费设备上实现6000 token/s预填充和1200 token/s解码速度。该模型通过蒸馏Gemini工具调用能力训练而成。 This demonstrates that specialized small models can outperform large general models for specific tasks like tool calling, enabling AI agents to run efficiently on budget phones, wearables, and edge devices. The architectural insight that cross-attention is more appropriate than MLPs for retrieval-and-assembly tasks could influence future model design. The model uses Simple Attention Networks architecture with only attention and gating mechanisms, no feed-forward networks (FFNs). Training involved 200B tokens pretraining on 16 TPU v6e and 2B tokens post-training on synthetic function-calling data, with the finding that 'no FFN' approach generalizes to any task with external structured knowledge access.
+A team from Cactus open-sourced Needle, a 26 million parameter function-calling model that achieves 6000 tokens/s prefill and 1200 tokens/s decode on consumer devices. The model uses Simple Attention Networks with no MLPs, distilled from Gemini tool-calling capabilities. This challenges the assumption that large models are needed for agentic behavior, demonstrating that tool calling is fundamentally retrieval-and-assembly rather than reasoning. It enables efficient on-device AI for phones, watches, and other consumer hardware. The model was pretrained on 200B tokens across 16 TPU v6e chips in 27 hours, then post-trained on 2B tokens of synthesized function-calling data in 45 minutes. It outperforms larger models like FunctionGemma-270M and Qwen-0.6B on single-shot function calling tasks.
 
 hackernews · HenryNdubuaku · May 12, 18:03 · [Discussion](https://news.ycombinator.com/item?id=48111896)
 
-**Background**: Traditional transformer models use both attention mechanisms and feed-forward networks (MLPs) in their architecture. Tool calling involves matching queries to tool names, extracting argument values, and assembling JSON responses - essentially a retrieval-and-assembly task. Cross-attention is particularly effective for aligning and copying information between input and output sequences. The 'Attention Is All You Need' paper originally introduced the transformer architecture that relies heavily on attention mechanisms instead of recurrent neural networks.
+**Background**: Function calling in AI models involves the model identifying which tools to use and extracting appropriate parameters, rather than executing code directly. Traditional approaches use large models with Feed-Forward Networks (FFNs), but this research shows that cross-attention mechanisms are sufficient for tool selection and parameter extraction. Simple Attention Networks eliminate MLPs entirely, focusing on attention and gating mechanisms.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://github.com/cactus-compute/needle/blob/main/docs/simple_attention_networks.md">needle/docs/simple_attention_networks.md at main · cactus-compute/needle</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Attention_Is_All_You_Need">Attention Is All You Need - Wikipedia</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)">Transformer (deep learning) - Wikipedia</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0950705124002843">Simple and deep graph attention networks - ScienceDirect</a></li>
+<li><a href="https://insiderllm.com/guides/function-calling-local-llms/">Best Local LLMs for Function Calling : Qwen 3.6, Gemma 4 | InsiderLLM</a></li>
+<li><a href="https://www.thelasttech.com/ai/what-is-cross-attention-mechanism-in-deep-learning">What is Cross Attention Mechanism in Deep Learning?</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Community discussion highlights that smaller models may be better suited for agentic harnesses, with observations that early Claude Code showed Sonnet calling tools quickly while Opus spent more time reasoning. Commenters noted the model's potential for command-line applications and questioned its discriminatory power for complex tool selection scenarios.
+**Discussion**: Community discussions include concerns about Google's potential response to model distillation, with references to Google's terms preventing model copying and reports of defensive measures against distillation attempts. Users also noted that smaller models may be more suitable for agentic harnesses compared to larger reasoning-focused models.
 
-**Tags**: `#AI`, `#machine-learning`, `#function-calling`, `#model-optimization`, `#agentic-systems`
+**Tags**: `#AI`, `#machine-learning`, `#model-compression`, `#function-calling`, `#on-device-AI`
 
 ---
 
 <a id="item-2"></a>
 ## [CERT releases six CVEs for serious dnsmasq vulnerabilities](https://lists.thekelleys.org.uk/pipermail/dnsmasq-discuss/2026q2/018471.html) ⭐️ 8.0/10
 
-CERT has released six CVEs for serious security vulnerabilities in dnsmasq, a widely-used DNS/DHCP server software that provides DNS caching, DHCP services, and other network features for small networks. This is significant because dnsmasq is deployed across numerous home routers, IoT devices, and Linux distributions, making these vulnerabilities potentially widespread. The incident highlights the ongoing security challenges with C-based network infrastructure and the need for memory-safe alternatives. The vulnerabilities prompted extensive discussion about memory safety in C versus modern languages like Rust, with community members advocating for DNS/DHCP servers to be rewritten in safer languages. The disclosure also raised concerns about package maintenance practices in stable Linux distributions like Debian.
+CERT has released six CVEs for serious security vulnerabilities in dnsmasq, a widely-used DNS/DHCP server software that provides coupled DNS and DHCP services to local networks. This is significant because dnsmasq is deployed across countless networks worldwide as a lightweight DNS and DHCP solution, making these vulnerabilities potentially exploitable on a large scale. The discovery highlights ongoing concerns about memory-safety issues in C-written network infrastructure software. The vulnerabilities were identified in dnsmasq, software designed for resource-constrained environments like routers and firewalls. The community discussion reveals concerns about Debian's patching practices and the need for memory-safe language alternatives like Rust or Go.
 
 hackernews · chizhik-pyzhik · May 12, 18:12 · [Discussion](https://news.ycombinator.com/item?id=48112042)
 
-**Background**: dnsmasq is a lightweight, open-source software that serves as an integrated DNS forwarder, DHCP server, TFTP server, and router advertisement daemon designed for small computer networks. It has low system resource requirements and runs on Linux, BSDs, Android, and macOS, making it prevalent in home routers and IoT devices. Memory safety refers to preventing errors like buffer overflows, use-after-free, and null pointer dereferences that commonly occur in C and C++ programs due to manual memory management.
+**Background**: Dnsmasq is a lightweight software that provides DNS forwarding, DHCP services, and TFTP functionality for local networks. It is commonly used in home routers, firewalls, and small-scale network deployments due to its small footprint. Memory-safety vulnerabilities in C-written software like dnsmasq often lead to buffer overflows, stack smashing, and other exploitable security flaws that can allow attackers to execute arbitrary code or gain elevated privileges.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Dnsmasq">Dnsmasq</a></li>
-<li><a href="https://www.memorysafety.org/docs/memory-safety/">What is memory safety and why does it matter? - Prossimo</a></li>
-<li><a href="https://spectrum.ieee.org/memory-safe-programming-languages">The Move to Memory-Safe Programming - IEEE Spectrum</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Dnsmasq">dnsmasq - Wikipedia</a></li>
+<li><a href="https://wiki.archlinux.org/title/Dnsmasq">dnsmasq - ArchWiki</a></li>
+<li><a href="https://textbook.cs161.org/memory-safety/vulnerabilities.html">Memory Safety Vulnerabilities | Computer Security</a></li>
 
 </ul>
 </details>
 
-**Discussion**: The community discussion focused on the urgent need to replace C-based network infrastructure with memory-safe alternatives like Rust or Go. Users expressed frustration with Debian's practice of backporting patches rather than upgrading packages, and some promoted alternative implementations like MaraDNS that have undergone security auditing. There was also concern about the slow response in updating dnsmasq in embedded systems like OpenWRT.
+**Discussion**: The community discussion shows strong engagement with 125 thoughtful comments addressing fundamental security architecture questions. Users advocate for moving away from C-based implementations toward memory-safe languages like Rust, highlight alternative solutions like MaraDNS, and express concerns about Debian's tendency to backport patches rather than upgrading to newer versions. There's also discussion about OpenWRT's response to the vulnerabilities and preferences for separate DNS/DHCP implementations instead of combined tools.
 
 **Tags**: `#security`, `#vulnerability`, `#dns`, `#cve`, `#memory-safety`
 
@@ -77,258 +77,262 @@ hackernews · chizhik-pyzhik · May 12, 18:12 · [Discussion](https://news.ycomb
 <a id="item-3"></a>
 ## [DuckDB Introduces Quack Client-Server Protocol](https://duckdb.org/2026/05/12/quack-remote-protocol) ⭐️ 8.0/10
 
-DuckDB introduces Quack, a new client-server protocol that enables remote access and concurrent operations while maintaining DuckDB's performance characteristics. The protocol allows multiple concurrent writers and supports workloads ranging from analytical queries to real-time applications. This addresses a major limitation of DuckDB's traditional embedded architecture by enabling horizontal scaling and multi-user scenarios. It solves real-world concurrency issues that prevented many organizations from adopting DuckDB in production environments requiring simultaneous access. Quack is built on proven technologies such as HTTP and maintains DuckDB's performance characteristics while enabling remote access. The protocol handles concurrent writers through serialization on the server side while preserving the analytical database's speed.
+DuckDB introduces Quack, a new client-server protocol that enables remote access and concurrent operations for the analytical database, allowing multiple concurrent writers and client-server communication. This addresses a major limitation of DuckDB by enabling horizontal scaling and concurrent access, opening up new deployment patterns for applications that need multi-user access while maintaining DuckDB's performance characteristics. The protocol allows DuckDB instances to communicate with each other and supports multiple concurrent writers through server-side serialization, enabling remote querying capabilities that were previously unavailable.
 
 hackernews · aduffy · May 12, 17:54 · [Discussion](https://news.ycombinator.com/item?id=48111765)
 
-**Background**: DuckDB is an open-source column-oriented Relational Database Management System designed for high performance on complex queries against large databases in embedded configurations. Traditionally used as an in-process database, DuckDB excels at analytical workloads but lacked native client-server capabilities for multi-user scenarios. The new Quack protocol bridges this gap by providing remote access while retaining DuckDB's core strengths.
+**Background**: DuckDB is an open-source, in-memory analytical database management system designed for interactive querying and high-speed data analysis. Traditionally, DuckDB operated as an in-process database with limited concurrency support, making it challenging to use in multi-user scenarios or for horizontal scaling. The introduction of the Quack protocol transforms DuckDB's architecture to support client-server deployments.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://duckdb.org/2026/05/12/quack-remote-protocol">Quack: The DuckDB Client-Server Protocol – DuckDB</a></li>
-<li><a href="https://en.wikipedia.org/wiki/DuckDB">DuckDB - Wikipedia</a></li>
 <li><a href="https://duckdb.org/">DuckDB – An in-process SQL OLAP database management system</a></li>
+<li><a href="https://medium.com/@karim.faiz/what-is-duckdb-when-why-and-how-to-use-it-b0fae2bdd29b">What is — DuckDB : When, Why, and How to Use It | Medium</a></li>
+<li><a href="https://duckdb.org/2026/05/12/quack-remote-protocol">Quack : The DuckDB Client - Server Protocol – DuckDB</a></li>
 
 </ul>
 </details>
 
-**Discussion**: The community response is largely positive, with developers highlighting how Quack solves horizontal scaling challenges they've faced with DuckDB. Some users note that concurrent writers are likely serialized on the server side, while others express uncertainty about DuckDB's overall direction as it expands beyond its embedded roots.
+**Discussion**: The community shows strong enthusiasm for the feature, with developers highlighting how it solves horizontal scaling challenges and enables concurrent access scenarios they've been struggling with. Some users question the exact implementation details of concurrent writers, while others consider it for multi-user applications.
 
-**Tags**: `#duckdb`, `#database`, `#client-server`, `#concurrency`, `#protocol`
+**Tags**: `#database`, `#protocol`, `#distributed-systems`, `#analytics`, `#client-server`
 
 ---
 
 <a id="item-4"></a>
-## [AI coding agents must reduce maintenance costs proportionally to productivity gains](https://simonwillison.net/2026/May/11/james-shore/#atom-everything) ⭐️ 8.0/10
+## [AI coding agents must reduce maintenance costs proportionally](https://simonwillison.net/2026/May/11/james-shore/#atom-everything) ⭐️ 8.0/10
 
-James Shore argues that AI coding agents must reduce maintenance costs proportionally to their productivity gains, with a mathematical framework showing that if you become twice as productive, you must halve maintenance costs to avoid creating unsustainable technical debt. This perspective provides a crucial lens for evaluating AI tools beyond initial productivity gains, highlighting how improper use of AI coding agents could create long-term technical debt that outweighs short-term benefits. It challenges organizations to consider the full lifecycle costs of AI-assisted development. The mathematical framework shows that doubling output while doubling maintenance costs quadruples total maintenance burden, and even holding maintenance costs steady while doubling output still doubles the total maintenance burden. The LLM must decrease maintenance costs by exactly the inverse rate it increases code output.
+James Shore argues that AI coding agents must reduce maintenance costs proportionally to their productivity gains, with a mathematical framework showing that doubling output while maintaining the same maintenance costs still doubles total maintenance burden. This perspective provides a crucial counterpoint to productivity-focused AI adoption, emphasizing that speed gains must be offset by reduced maintenance burden to avoid creating unsustainable long-term technical debt. The mathematical relationship requires that if an AI agent makes coding twice as fast, it must halve maintenance costs to be sustainable; tripling productivity requires reducing maintenance costs to one-third to avoid quadrupling total maintenance burden.
 
 rss · Simon Willison · May 11, 19:48
 
-**Background**: Technical debt refers to the implied cost of additional rework caused by choosing an easy or quick solution now instead of using a better approach that would take longer. In software development, AI coding agents like large language models (LLMs) can accelerate code generation but may introduce complexity that increases future maintenance burdens. Maintenance costs include debugging, refactoring, extending functionality, and understanding complex code over time.
+**Background**: AI coding agents are automated systems that assist or perform coding tasks using large language models (LLMs), promising increased developer productivity. Technical debt refers to the implied cost of additional rework caused by choosing an easy or quick solution now instead of using a better approach that would take longer. Current LLM-based code generation tools face challenges in code review and long-term maintenance costs.
 
 <details><summary>References</summary>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Technical_debt">Technical debt - Wikipedia</a></li>
+<li><a href="https://web.mit.edu/ha22286/www/papers/IEEESP25_1.pdf">Challenges to Using LLMs in Code Generation and Repair</a></li>
+<li><a href="https://finance.biggo.com/news/202507040724_LLM_Code_Review_Bottlenecks">LLM-Generated Code Creates New Bottlenecks as Review and ...</a></li>
 
 </ul>
 </details>
 
-**Tags**: `#AI`, `#software-engineering`, `#maintenance-costs`, `#technical-debt`, `#productivity`
+**Tags**: `#AI-coding-agents`, `#software-maintenance`, `#technical-debt`, `#productivity`, `#LLM`
 
 ---
 
 <a id="item-5"></a>
-## [Rendering the Sky, Sunsets, and Planets](https://blog.maximeheckel.com/posts/on-rendering-the-sky-sunsets-and-planets/) ⭐️ 7.0/10
+## [Why senior developers fail to communicate their expertise](https://www.nair.sh/guides-and-opinions/communicating-your-expertise/why-senior-developers-fail-to-communicate-their-expertise) ⭐️ 7.0/10
 
-A comprehensive technical blog post explores the mathematics and implementation of realistic atmospheric scattering for rendering skies, sunsets, and planetary atmospheres with practical WebGL examples. This provides valuable insights into complex graphics programming with real-world applications for game development, planet visualization, and realistic environmental rendering in browsers and mobile devices. The post covers both Rayleigh and Mie scattering phenomena, discusses precomputed lookup tables for efficiency, and addresses the mathematical foundations needed for realistic atmospheric rendering including the classic 1993 Nishita paper implementation.
+An exploration of the challenges senior developers face in effectively communicating their expertise to others, with particular focus on knowledge transfer difficulties and organizational accountability issues. This addresses a critical issue in software engineering where institutional knowledge remains trapped within individual experts, hindering team growth and creating single points of failure in organizations. Effective knowledge transfer is essential for maintaining code quality and system reliability across development teams. The discussion reveals that expertise often resides in developers' internal 'world models' that are difficult to articulate, and highlights the gap between proof-of-concepts and production systems where accountability for risky decisions is lacking.
 
-hackernews · ibobev · May 12, 13:26 · [Discussion](https://news.ycombinator.com/item?id=48107997)
+hackernews · nilirl · May 12, 15:08 · [Discussion](https://news.ycombinator.com/item?id=48109460)
 
-**Background**: Atmospheric scattering is a rendering technique that simulates how light interacts with particles in Earth's atmosphere to create realistic skies. Rayleigh scattering causes the blue color of the sky during daytime, while Mie scattering accounts for larger particles creating white clouds and haze. The technique requires solving complex integral equations that model light transport through atmospheric volumes, often using precomputed lookup tables for real-time performance. The foundational work by Nishita et al. from 1993 established early methods for displaying Earth's atmosphere with accurate scattering effects.
+**Background**: Senior developers typically accumulate deep technical knowledge and experience over years of practice, but transferring this expertise to junior colleagues or documenting it effectively remains a persistent challenge in software development organizations. This knowledge transfer problem affects team scalability, project continuity, and organizational learning.
 
-<details><summary>References</summary>
-<ul>
-<li><a href="https://gamedev.net/tutorials/programming/graphics/real-time-atmospheric-scattering-r2093">Real-Time Atmospheric Scattering - Game... - GameDev.net</a></li>
-<li><a href="https://developer.nvidia.com/gpugems/gpugems2/part-ii-shading-lighting-and-shadows/chapter-16-accurate-atmospheric-scattering">Chapter 16. Accurate Atmospheric Scattering | NVIDIA Developer</a></li>
+**Discussion**: Community discussion highlights that expertise comes from internal mental models that are hard to separate and communicate, with some senior developers expressing frustration about blanket statements regarding their approach. Commenters note that proof-of-concepts often become production systems without proper rewrites, and that accountability for risky decisions is lacking. Additionally, some experienced developers report that junior developers show little interest in seeking mentorship despite having valuable knowledge to share.
 
-</ul>
-</details>
-
-**Discussion**: Community members praised the technical depth and shared related resources, with discussions about the 1993 Nishita paper being the 'OG' for atmospheric rendering. Some noted that the sunset model could be improved by accounting for twilight effects lasting until the sun is 18 degrees below the horizon, rather than immediately going black when the sun sets.
-
-**Tags**: `#computer-graphics`, `#atmospheric-scattering`, `#rendering`, `#webgl`, `#planetary-visualization`
+**Tags**: `#software-engineering`, `#developer-culture`, `#knowledge-transfer`, `#senior-development`, `#communication`
 
 ---
 
 <a id="item-6"></a>
-## [Hashimoto: Technical decision makers prioritize job security over innovation](https://simonwillison.net/2026/May/12/mitchell-hashimoto/#atom-everything) ⭐️ 7.0/10
+## [Comprehensive Guide to Atmospheric Scattering Rendering](https://blog.maximeheckel.com/posts/on-rendering-the-sky-sunsets-and-planets/) ⭐️ 7.0/10
 
-Mitchell Hashimoto observed that 90% of technical decision makers (TDMs) are primarily motivated by avoiding getting fired rather than pursuing innovative technical solutions. They tend to follow analyst recommendations from firms like Gartner and McKinsey to make defensible purchasing decisions. This insight explains why enterprise software markets often favor established vendors over innovative startups, even when the latter offer superior technical solutions. It highlights the disconnect between technical merit and purchasing decisions in corporate environments. The quote specifically mentions how TDMs follow 'secular trends supported by analysts' and make purchases based on buzzwords like 'AI strategy' and 'context engine for AI apps' to ensure defensibility in their decisions. These decision makers typically work traditional hours and don't engage deeply with technical communities outside work.
+A detailed technical guide has been published covering the implementation of realistic atmospheric scattering models for rendering skies, sunsets, and planetary atmospheres with mathematical explanations and practical code examples. This guide provides essential knowledge for computer graphics developers working on realistic environmental rendering, offering practical implementations of complex atmospheric physics that are crucial for games, simulations, and visual effects. The guide covers seminal work from Nishita et al. (1993) and addresses practical considerations like twilight persistence, where the sky remains illuminated even after sunset until the sun is 18 degrees below the horizon.
 
-rss · Simon Willison · May 12, 22:21
+hackernews · ibobev · May 12, 13:26 · [Discussion](https://news.ycombinator.com/item?id=48107997)
 
-**Background**: Technical Decision Makers (TDMs) are typically senior IT professionals such as CTOs, CIOs, Enterprise Architects, or IT Managers who make purchasing decisions for enterprise software. Consulting firms like Gartner and McKinsey influence these decisions through market research and strategic recommendations that help executives justify their choices to stakeholders. This dynamic creates a market where vendor reputation and analyst endorsements can matter more than technical capabilities.
+**Background**: Atmospheric scattering is a fundamental concept in computer graphics that simulates how light interacts with particles in Earth's atmosphere to create realistic sky colors, sunsets, and planetary appearances. The phenomenon involves complex mathematical models that account for Rayleigh and Mie scattering effects. Procedural generation techniques are often combined with atmospheric rendering to create dynamic, realistic environments in real-time applications.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://learn.microsoft.com/en-us/archive/blogs/girishr/technical-decision-maker-tdm-deck-for-dynamics-crm">Technical Decision Maker (TDM) deck for Dynamics CRM | Microsoft Learn</a></li>
-<li><a href="https://www.gartner.com/en/newsroom/press-releases/2026-05-11-gartner-2026-cmo-spend-survey-finds-cmos-allocate-15-point-3-percent-of-marketing-budgets-to-ai-but-only-30-percent-are-ready-to-scale-ai-capabilities">Gartner 2026 CMO Spend Survey Finds CMOs Allocate 15.3% of...</a></li>
-<li><a href="https://www.mckinsey.com/">Global management consulting | McKinsey & Company</a></li>
+<li><a href="https://developer.nvidia.com/gpugems/gpugems2/part-ii-shading-lighting-and-shadows/chapter-16-accurate-atmospheric-scattering">Chapter 16. Accurate Atmospheric Scattering | NVIDIA Developer</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Procedural_generation">Procedural generation - Wikipedia</a></li>
 
 </ul>
 </details>
 
-**Tags**: `#technical-decision-making`, `#enterprise-software`, `#market-dynamics`, `#career-strategy`
+**Discussion**: Community members praised the guide while discussing related work like Sebastian Lague's planet generation videos and sharing their own implementations. Some noted the importance of realistic twilight simulation, pointing out that skies shouldn't turn black immediately after sunset, and highlighted the impressive capabilities of modern mobile devices and browsers for complex graphics rendering.
+
+**Tags**: `#computer-graphics`, `#atmospheric-scattering`, `#rendering`, `#webgl`, `#procedural-generation`
 
 ---
 
 <a id="item-7"></a>
-## [LLM 0.32a2 adds OpenAI reasoning tokens support](https://simonwillison.net/2026/May/12/llm/#atom-everything) ⭐️ 7.0/10
+## [CSP Allow-list Experiment Demonstrates Novel Bypass Technique](https://simonwillison.net/2026/May/13/csp-allow/#atom-everything) ⭐️ 7.0/10
 
-LLM 0.32a2 alpha release adds support for OpenAI's new /v1/responses endpoint that displays reasoning tokens from advanced models in different colors, replacing the traditional /v1/chat/completions endpoint for GPT-5 class models. This update enables developers to visualize and debug the internal reasoning processes of advanced AI models, providing transparency into how GPT-5 class models make decisions through interleaved reasoning across tool calls. The feature displays reasoning tokens in different colors compared to standard output, with -R or --hide-reasoning flags available to suppress the reasoning display when not needed.
+Simon Willison created a tool that demonstrates how to bypass CSP restrictions by loading an app in a sandboxed iframe and intercepting CSP errors through a custom fetch() function that passes errors to the parent window, allowing users to dynamically add domains to an allow-list. This experiment reveals a sophisticated approach to circumventing Content Security Policy protections, highlighting potential security vulnerabilities that developers need to understand to better secure their applications against CSP bypass attacks. The technique uses sandboxed iframes with parent window communication to intercept CSP violations and prompts users to add domains to the allow-list, effectively creating a dynamic policy update mechanism that undermines CSP's security model.
 
-rss · Simon Willison · May 12, 17:45
+rss · Simon Willison · May 13, 04:50
 
-**Background**: Reasoning tokens represent the intermediate thought processes of advanced AI models as they work through complex problems. The new /v1/responses endpoint enables interleaved reasoning across tool calls, allowing models like GPT-5 class systems to show their step-by-step thinking before producing final answers. Traditional chat completion endpoints don't provide visibility into these internal reasoning steps.
+**Background**: Content Security Policy (CSP) is a security feature that helps prevent cross-site scripting (XSS) and other code injection attacks by specifying which sources of content are allowed to be loaded by a web page. The sandbox directive in CSP enables restrictions on iframe content similar to the HTML sandbox attribute. This experiment demonstrates how CSP enforcement can potentially be undermined through iframe-based techniques.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://medium.com/@odhitom09/openai-responses-api-a-comprehensive-guide-ad546132b2ed">OpenAI Responses API: A Comprehensive Guide | by Tom... | Medium</a></li>
-<li><a href="https://openrouter.ai/docs/guides/best-practices/reasoning-tokens">Reasoning Tokens | Enhanced AI Model Reasoning with OpenRouter</a></li>
-<li><a href="https://blogs.nvidia.com/blog/ai-tokens-explained/">What Are AI Tokens ? The Language and Currency... | NVIDIA Blog</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/sandbox">Content-Security-Policy: sandbox directive - MDN Web Docs</a></li>
+<li><a href="https://content-security-policy.com/">Content-Security-Policy (CSP) Header Quick Reference</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP">Content Security Policy (CSP) - HTTP - MDN Web Docs</a></li>
 
 </ul>
 </details>
 
-**Tags**: `#llm`, `#openai`, `#reasoning`, `#tooling`, `#gpt`
+**Tags**: `#web-security`, `#csp`, `#content-security-policy`, `#browser-security`, `#javascript`
 
 ---
 
 <a id="item-8"></a>
-## [AI Writing Tools Create 'Zombie Internet' Problem](https://simonwillison.net/2026/May/11/zombie-internet/#atom-everything) ⭐️ 7.0/10
+## [LLM library adds OpenAI reasoning token support](https://simonwillison.net/2026/May/12/llm/#atom-everything) ⭐️ 7.0/10
 
-Jason Koebler introduces the concept of 'Zombie Internet' to describe how AI-assisted human content makes authentic online communication increasingly difficult to distinguish from automated content. The phenomenon involves people using AI tools interacting with other people who may or may not be using AI, creating a complex web of indistinguishable human and artificial communication. This trend threatens the authenticity of online discourse and creates mental exhaustion for users trying to filter AI-generated content. The proliferation of AI-assisted content affects information quality and changes fundamental human communication patterns on the internet. The 'Zombie Internet' differs from the 'Dead Internet' theory by focusing on hybrid human-AI interactions rather than purely bot-to-bot communication. It includes scenarios like people creating AI agents to interact with others, AI-assisted influencers, and automated content farms designed solely for monetary gain.
+LLM library version 0.32a2 introduces support for OpenAI's new /v1/responses endpoint that enables viewing reasoning tokens from GPT-5 class models with interleaved reasoning across tool calls. This represents a meaningful advancement in how reasoning processes can be observed and debugged, allowing developers to better understand how advanced AI models think through complex problems during tool interactions. The new feature displays reasoning tokens in a different color from standard output, and users can hide reasoning tokens using the -R or --hide-reasoning flags when running prompts against OpenAI models.
 
-rss · Simon Willison · May 11, 19:21
+rss · Simon Willison · May 12, 17:45
 
-**Background**: The Dead Internet theory originally suggested that most internet content since 2016 was generated by bots rather than humans. With the rise of generative AI in the 2020s, this concern has evolved to include AI-assisted human content that blurs the line between authentic and artificial communication. AI agents now integrate with real systems through APIs, webhooks, and various interaction mechanisms, enabling sophisticated automated interactions.
+**Background**: OpenAI has introduced a new Responses API (/v1/responses) that replaces the traditional /v1/chat/completions endpoint for newer reasoning-capable models like GPT-5. This API enables interleaved reasoning across tool calls, where the model can think through problems step-by-step while making tool calls, then continue reasoning based on the tool responses. The LLM library by Simon Willison is a popular command-line tool and Python library for interacting with various large language models including OpenAI, Anthropic, and others.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Dead_Internet_theory">Dead Internet theory</a></li>
-<li><a href="https://skywork.ai/blog/ai-agent-integration/">AI Agent Integration: How Agents Interact with Software</a></li>
+<li><a href="https://platform.openai.com/docs/guides/migrate-to-responses">Migrate to the Responses API | OpenAI API</a></li>
+<li><a href="https://developers.openai.com/blog/responses-api">Why we built the Responses API | OpenAI Developers</a></li>
+<li><a href="https://github.com/simonw/llm">GitHub - simonw/llm: Access large language models from the command-line · GitHub</a></li>
 
 </ul>
 </details>
 
-**Tags**: `#AI-content`, `#internet-culture`, `#information-quality`, `#human-computer-interaction`, `#digital-communication`
+**Tags**: `#llm`, `#openai`, `#reasoning`, `#api`, `#tool-calls`
 
 ---
 
 <a id="item-9"></a>
-## [Shopify's AI coding agent River works in public Slack channels](https://simonwillison.net/2026/May/11/learning-on-the-shop-floor/#atom-everything) ⭐️ 7.0/10
+## [AI Writing Tools Create 'Zombie Internet' Problem](https://simonwillison.net/2026/May/11/zombie-internet/#atom-everything) ⭐️ 7.0/10
 
-Shopify's internal coding agent called River operates exclusively in public Slack channels rather than private messages, creating transparent learning opportunities where any employee can observe and participate in AI-assisted development work. The system embodies the German concept of 'Lehrwerkstatt' (teaching workshop) where the entire workplace becomes a classroom. This represents a novel approach to workplace learning and AI integration, demonstrating how companies can leverage AI agents not just for productivity but for organizational knowledge sharing and continuous learning. It shows how transparency in AI-assisted work can accelerate team-wide skill development and create osmosis learning environments. River refuses to respond to direct messages and instead suggests creating public channels for collaboration. The system operates on the principle that all conversations are searchable and observable by anyone at Shopify, with some channels having over 100 participants who contribute, review, and learn from the interactions.
+Jason Koebler introduces the 'Zombie Internet' concept to describe how AI-generated content is blurring the lines between human and machine communication online, creating mental exhaustion for users trying to filter authentic content. This phenomenon represents a fundamental shift in internet culture where authentic human communication is increasingly difficult to distinguish from AI-generated content, threatening the quality and trustworthiness of online discourse. The 'Zombie Internet' differs from the 'Dead Internet' theory by focusing on hybrid interactions where humans talk to AI, humans talk to other humans using AI tools, and AI agents interact with various combinations of humans and other AI systems.
 
-rss · Simon Willison · May 11, 15:46
+rss · Simon Willison · May 11, 19:21
 
-**Background**: The concept of 'Lehrwerkstatt' comes from German educational philosophy meaning 'teaching workshop', where learning happens through observation and participation in real work environments rather than traditional classrooms. This approach emphasizes learning by being near the work and constant observation, similar to how Midjourney initially used public Discord channels to enable users to learn from each other's prompt experiments.
+**Background**: The 'Dead Internet Theory' originally suggested that most online content since 2016 has been generated by bots rather than humans. The AI boom of the 2020s has intensified these concerns as large language models and AI writing tools have proliferated across social media platforms. The 'Zombie Internet' concept builds on this by acknowledging that the problem is not just bots talking to bots, but the complex ecosystem of human-AI hybrid interactions that now dominate online spaces.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://aiengineerguide.com/til/shopify-river-ai-agent/">Shopify 's River AI Agent | AI Engineer Guide</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Dead_Internet_theory">Dead Internet theory</a></li>
+<li><a href="https://www.forbes.com/sites/danidiplacido/2024/01/16/the-dead-internet-theory-explained/">The Dead Internet Theory, Explained - Forbes 'It won’t be so much a ghost town as a zombie apocalypse ... The ‘dead internet theory’ makes eerie claims about an AI-run ... How to survive the zombie internet - Digital Frontier The Dead Internet Theory: A Survey on Artificial Interactions ...</a></li>
+<li><a href="https://www.unsw.edu.au/newsroom/news/2024/05/-the-dead-internet-theory-makes-eerie-claims-about-an-ai-run-web-the-truth-is-more-sinister">The ‘dead internet theory’ makes eerie claims about an AI-run web. The truth is more sinister</a></li>
 
 </ul>
 </details>
 
-**Tags**: `#AI agents`, `#software engineering`, `#workplace learning`, `#collaboration`, `#coding assistants`
+**Tags**: `#AI-content`, `#internet-culture`, `#digital-authenticity`, `#human-computer-interaction`, `#online-discourse`
 
 ---
 
 <a id="item-10"></a>
-## [Restore full BambuNetwork support for Bambu Lab printers](https://github.com/FULU-Foundation/OrcaSlicer-bambulab) ⭐️ 6.0/10
+## [Shopify's AI coding agent River operates in public Slack channels](https://simonwillison.net/2026/May/11/learning-on-the-shop-floor/#atom-everything) ⭐️ 7.0/10
 
-A GitHub project called OrcaSlicer-bambulab aims to restore local network support for Bambu Lab 3D printers after the manufacturer implemented mandatory cloud authentication that restricted local printing capabilities. The project seeks to bypass Bambu Lab's new authorization system that replaced direct network API access. This represents a significant tension between manufacturers and users regarding device control and privacy, affecting 3D printing enthusiasts who prefer local network functionality over cloud-dependent systems. The issue highlights broader concerns about IoT device autonomy and manufacturer lock-in strategies that could impact user freedom and data privacy. Bambu Lab implemented a dual-mode system with 'cloud' mode requiring Bambu Studio or Bambu Connect for printing, while removing direct network API access that third-party software previously used. The new authorization system uses a limited URL-based interface through Bambu Connect instead of direct printer communication.
+Shopify's internal AI coding agent called River operates exclusively in public Slack channels, refusing direct messages and requiring all interactions to be visible to other employees. This creates a 'Lehrwerkstatt' (teaching workshop) environment where over 5,938 employees used River across 4,450 channels in a 30-day period. This represents a novel approach to organizational learning where AI-assisted development becomes a shared educational experience, allowing employees to learn by observing others' interactions with the coding agent. The public-first model promotes transparency and collective knowledge building while scaling the learning process across the entire organization. River deliberately avoids private conversations and forces all work into searchable public channels where anyone at Shopify can join, observe, and contribute. The approach leverages 'osmosis learning' where employees absorb knowledge naturally through exposure to visible work processes without requiring formal curricula or training plans.
 
-hackernews · Murfalo · May 12, 21:55 · [Discussion](https://news.ycombinator.com/item?id=48115127)
+rss · Simon Willison · May 11, 15:46
 
-**Background**: Bambu Lab is a manufacturer of consumer 3D printers that traditionally supported local network connectivity for printing operations. The company recently introduced mandatory cloud authentication requirements that forced users to connect through their cloud infrastructure rather than using local network protocols. This change affected users who preferred local-only printing and third-party slicing software integration. The BambuNetwork refers to the local area network communication protocol that allowed direct printer control without internet dependency.
+**Background**: The concept of 'Lehrwerkstatt' is a German term meaning 'teaching workshop' that emphasizes learning through proximity to actual work rather than formal instruction. This approach to workplace learning focuses on creating environments where learning happens organically through observation and participation in real tasks, similar to how Midjourney initially operated in public Discord channels to foster community learning around text-to-image prompting techniques.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://wiki.bambulab.com/en/knowledge-sharing/enable-lan-mode">How to enable LAN Mode on Bambu Lab printers | Bambu Lab Wiki</a></li>
-<li><a href="https://consumerrights.wiki/w/Wiki/Bambu_Lab_Authorization_Control_System">Bambu Lab Authorization Control System - Consumer Rights Wiki</a></li>
-<li><a href="https://deepwiki.com/greghesp/ha-bambulab/1.2-connection-options">Connection Options | greghesp/ha-bambulab | DeepWiki</a></li>
+<li><a href="https://www.zenml.io/llmops-database/building-a-public-ai-agent-workspace-for-organizational-learning">Shopify: Building a Public AI Agent Workspace for ...</a></li>
+<li><a href="https://www.weiterbildungsmarkt.net/magazin/social-workplace-learning-der-schluessel-fuer-innovation-und-wettbewerbsfaehigkeit/">Social Workplace Learning - Der Schlüssel für Innovation und Wettbewerbsfähigkeit</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Community members express distrust toward Bambu Lab due to their initial announcement that cloud authentication would be required even for local LAN printing, though they later backpedaled after public backlash. Users question Bambu's motivations for implementing such restrictions and whether it's primarily for collecting usage data and STL files. Some community members note that Bambu Lab's website has been excluded from archive.org, raising additional concerns about transparency.
-
-**Tags**: `#3d-printing`, `#iot`, `#cloud-authentication`, `#open-source`, `#manufacturer-control`
+**Tags**: `#AI agents`, `#software development`, `#workplace collaboration`, `#coding assistants`, `#organizational learning`
 
 ---
 
 <a id="item-11"></a>
-## [Why senior developers fail to communicate their expertise](https://www.nair.sh/guides-and-opinions/communicating-your-expertise/why-senior-developers-fail-to-communicate-their-expertise) ⭐️ 6.0/10
+## [Restore full BambuNetwork support for Bambu Lab printers](https://github.com/FULU-Foundation/OrcaSlicer-bambulab) ⭐️ 6.0/10
 
-A discussion explores the challenges senior developers face when trying to effectively communicate their expertise to junior team members, revealing various barriers to knowledge transfer in software engineering teams. This issue significantly impacts team productivity, knowledge retention, and professional development within software engineering organizations, affecting both individual career growth and overall project success. The communication challenges stem from the inherent difficulty of transferring internal 'world models' and experiential knowledge that cannot be easily articulated in words, combined with organizational and cultural factors that impede effective mentoring relationships.
+A GitHub project called OrcaSlicer-bambulab aims to restore BambuNetwork support for Bambu Lab 3D printers after the manufacturer implemented mandatory cloud authentication that restricts local printing capabilities. The project seeks to bypass Bambu Lab's new authentication requirements that force users to use Bambu Studio or Bambu Connect for printing. This represents a significant battle over IoT device autonomy and user rights, as manufacturers increasingly implement cloud-lock mechanisms that limit user control over their own devices. The controversy highlights the tension between manufacturer business models and user preferences for local network printing capabilities. Bambu Lab has implemented two operational modes: 'Cloud' mode requiring cloud authentication for all operations including local printing, and 'LAN' mode which was initially also planned to require cloud auth but was backpedaled due to user backlash. The BambuNetwork protocol relies on MQTT messaging for communication between applications and printers.
 
-hackernews · nilirl · May 12, 15:08 · [Discussion](https://news.ycombinator.com/item?id=48109460)
+hackernews · Murfalo · May 12, 21:55 · [Discussion](https://news.ycombinator.com/item?id=48115127)
 
-**Background**: Knowledge transfer between experienced and junior developers is a critical aspect of software engineering teams, involving the sharing of technical expertise, best practices, architectural decisions, and institutional wisdom that accumulates over years of experience. Effective mentorship requires both technical skills and communication abilities to bridge the gap between different experience levels.
+**Background**: Bambu Lab is a manufacturer of desktop 3D printers that uses a proprietary network protocol called BambuNetwork to enable communication between their printers and software applications. The protocol utilizes MQTT (Message Queuing Telemetry Transport), a lightweight messaging protocol commonly used in IoT devices for remote control and monitoring. Previously, users could print via local network connections without cloud authentication, but recent firmware updates introduced mandatory cloud authorization requirements.
 
-**Discussion**: The community discussion reveals diverse perspectives on the root causes of communication failures, including the challenge of articulating internal world models, resistance to blanket approaches in software development, lack of interest from junior developers in seeking mentorship, and accountability issues around risk-taking and technical decision-making.
+<details><summary>References</summary>
+<ul>
+<li><a href="https://synman.github.io/bambu-printer-manager/mqtt-protocol-reference/">Protocol Reference - bambu-printer-manager</a></li>
+<li><a href="https://wiki.bambulab.com/en/general/printer-network-ports">Printer Network Ports - Bambu Lab Wiki</a></li>
+<li><a href="https://docs.octoeverywhere.com/plugin-api/mqtt-websocket-proxy/">Bambu Lab MQTT Remote Access - OctoEverywhere API Docs</a></li>
 
-**Tags**: `#software-engineering`, `#mentorship`, `#communication`, `#career-development`, `#team-dynamics`
+</ul>
+</details>
+
+**Discussion**: Community members express significant distrust toward Bambu Lab due to their initial announcement that cloud authentication would be required even for local LAN printing, which they only backpedaled on after public backlash. Users question Bambu's motivations for implementing such restrictions, speculating about data collection and business model considerations, while some criticize the project maintainers for squashing git history.
+
+**Tags**: `#3d-printing`, `#iot`, `#open-source`, `#cloud-authentication`, `#device-autonomy`
 
 ---
 
 <a id="item-12"></a>
-## [Reimagining the mouse pointer for the AI era](https://deepmind.google/blog/ai-pointer/) ⭐️ 6.0/10
+## [Obsidian Announces New Plugin Community Site and Automated Review System](https://obsidian.md/blog/future-of-plugins/) ⭐️ 6.0/10
 
-Google DeepMind proposes an AI-powered mouse pointer that enables voice-activated interactions and contextual assistance during computer tasks, allowing users to speak commands while pointing at elements on screen. This represents a fundamental shift in human-computer interaction design, potentially moving beyond traditional point-and-click interfaces toward conversational AI assistance. However, it faces significant practical challenges regarding privacy, efficiency, and user acceptance compared to existing solutions. The system allows users to initiate conversations with AI by pointing at screen elements and speaking commands, though it raises concerns about server connectivity requirements and response times. The technology appears to require continuous voice input and server communication for AI processing.
-
-hackernews · devhouse · May 12, 17:40 · [Discussion](https://news.ycombinator.com/item?id=48111581)
-
-**Background**: The traditional mouse pointer has remained largely unchanged for over half a century, serving as the primary interface element for graphical computing environments. Recent advances in AI and natural language processing have opened possibilities for more intuitive human-computer interaction methods that go beyond simple clicking and dragging.
-
-<details><summary>References</summary>
-<ul>
-<li><a href="https://deepmind.google/blog/ai-pointer/">Shaping the future of AI interaction by reimagining the mouse pointer</a></li>
-<li><a href="https://news.google.com/stories/CAAqNggKIjBDQklTSGpvSmMzUnZjbmt0TXpZd1NoRUtEd2oyOTYtUUVSRVBkdnZZbGZRakZpZ0FQAQ?hl=en-IN&gl=IN&ceid=IN:en">Google News - Google DeepMind unveils AI - powered mouse pointer ...</a></li>
-
-</ul>
-</details>
-
-**Discussion**: The community shows mixed reactions with significant skepticism about practical implementation. Many commenters argue that voice controls would be disruptive in shared spaces and that the demonstrated tasks could be accomplished more efficiently through traditional interfaces like right-click menus. Some see potential in the conversational interface concept while others view it as solving non-existent problems.
-
-**Tags**: `#AI`, `#UI/UX`, `#Human-Computer Interaction`, `#Voice Control`, `#Productivity`
-
----
-
-<a id="item-13"></a>
-## [Obsidian Announces Automated Plugin Review System](https://obsidian.md/blog/future-of-plugins/) ⭐️ 6.0/10
-
-Obsidian announced improvements to their plugin review system to address scaling issues caused by manual reviews and growing plugin submissions, implementing automated systems to replace the previous manual review process that had become a bottleneck. This resolves a major scaling bottleneck that had made it nearly impossible to submit new plugins, affecting thousands of plugin developers and users while preventing the ecosystem from growing. The change impacts the entire Obsidian community by enabling faster plugin approvals and reducing developer frustration. The automated system addresses the challenge of having only seven team members handling thousands of plugin developers, but community concerns remain about security implications since plugins still have full system access without proper sandboxing or permission systems.
+Obsidian has launched a new community site and automated review system for plugins to address scaling issues with manual reviews and growing developer frustration. The system aims to resolve bottlenecks that made it nearly impossible to submit new plugins due to overwhelming manual review demands. This addresses critical scaling challenges for the Obsidian platform affecting thousands of plugin developers and users. The automated system will accelerate plugin development and deployment while attempting to maintain security standards in a growing ecosystem. The new system replaces manual reviews that were causing significant delays and developer burnout. However, security concerns remain as plugins still have full system access without a proper sandboxing or permission system, raising questions about the effectiveness of automated security checks.
 
 hackernews · xz18r · May 12, 15:45 · [Discussion](https://news.ycombinator.com/item?id=48109970)
 
-**Background**: Obsidian plugins are TypeScript/JavaScript modules that extend the application through the Obsidian API, allowing users to customize their note-taking experience. The previous manual review system had become overwhelmed by the volume of plugin submissions, creating significant delays for developers trying to publish new plugins.
+**Background**: Obsidian is a popular note-taking application that supports extensibility through plugins written in TypeScript/JavaScript. These plugins interact with Obsidian's API and can extend functionality significantly. The platform has grown rapidly, leading to thousands of plugins and corresponding review challenges. The previous manual review process became unsustainable as plugin development increased.
 
 <details><summary>References</summary>
 <ul>
 <li><a href="https://docs.obsidian.md/Plugins/Getting+started/Build+a+plugin">Build a plugin - Developer Documentation</a></li>
-<li><a href="https://www.emmanueldemey.dev/blog/2025-10-27-building-obsidian-plugin-word-counter-part-1">Building Your First Obsidian Plugin : A Word Counter Badge (Part 1)</a></li>
+<li><a href="https://www.awesomecodereviews.com/automation/automated-code-reviews/">13 Best Automated Code Review Tools - Awesome Code Reviews</a></li>
 
 </ul>
 </details>
 
-**Discussion**: Community responses were mixed, with some celebrating the relief of the scaling bottleneck while others expressed serious security concerns about automated checks without proper sandboxing. Some users noted that plugins still have full system access, essentially providing 'click here for RCE' capabilities, and questioned whether automated checks can reliably detect malicious plugins.
+**Discussion**: Community response is mixed, with appreciation for solving the scaling bottleneck but significant concerns about security. Some users worry that automated checks cannot reliably detect malicious plugins, and critics point out that plugins still have full system access without proper sandboxing, essentially creating 'click here for RCE' security models.
 
-**Tags**: `#obsidian`, `#plugins`, `#developer-tools`, `#security`, `#automation`
+**Tags**: `#obsidian`, `#plugins`, `#developer-tools`, `#platform-scaling`, `#community`
+
+---
+
+<a id="item-13"></a>
+## [Hashimoto on Technical Decision Makers Prioritizing Job Security](https://simonwillison.net/2026/May/12/mitchell-hashimoto/#atom-everything) ⭐️ 6.0/10
+
+Mitchell Hashimoto observed that 90% of technical decision makers (TDMs) are primarily motivated by avoiding getting fired rather than pursuing innovation, leading them to follow analyst recommendations from firms like Gartner and McKinsey instead of making bold technical choices. This insight explains why many enterprises adopt trendy technologies based on analyst reports rather than technical merit, which impacts how new technologies gain market traction and why innovation often stagnates in large organizations. Hashimoto notes that these technical decision makers typically work standard hours, don't engage with technical communities outside work, and make defensive purchasing decisions based on analyst recommendations like 'Context Engine for AI Apps' when trends emerge.
+
+rss · Simon Willison · May 12, 22:21
+
+**Background**: Technical Decision Makers (TDMs) are typically senior IT professionals such as CTOs, CIOs, Enterprise Architects, or IT Managers who influence technology purchasing decisions within organizations. Analyst firms like Gartner and McKinsey publish influential reports that shape enterprise technology strategies, with Gartner's annual Hype Cycle for Artificial Intelligence being particularly impactful for AI adoption decisions. These reports often drive enterprise spending toward trending technologies regardless of actual technical fit.
+
+<details><summary>References</summary>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Technical_data_management_system">Technical data management system - Wikipedia</a></li>
+<li><a href="https://www.acronymfinder.com/Technical-Decision-Maker-(various-companies)-(TDM).html">TDM - Technical Decision Maker (various companies) | AcronymFinder</a></li>
+<li><a href="https://learn.microsoft.com/en-us/archive/blogs/girishr/technical-decision-maker-tdm-deck-for-dynamics-crm">Technical Decision Maker (TDM) deck for Dynamics CRM | Microsoft Learn</a></li>
+<li><a href="https://www.gartner.com/en/newsroom/press-releases/2025-08-05-gartner-hype-cycle-identifies-top-ai-innovations-in-2025">Gartner Hype Cycle Identifies Top AI Innovations in 2025</a></li>
+
+</ul>
+</details>
+
+**Tags**: `#enterprise`, `#decision-making`, `#technology-adoption`, `#business-strategy`
 
 ---
 
 <a id="item-14"></a>
 ## [Using LLM in shebang lines of scripts](https://simonwillison.net/2026/May/11/llm-shebang/#atom-everything) ⭐️ 6.0/10
 
-Demonstrates how to use the llm command-line tool directly in shell script shebang lines using fragments (-f) and tool call (-T) capabilities, allowing natural language instructions to be executed as scripts. This represents a novel integration of AI into traditional Unix scripting paradigms, enabling developers to write scripts in plain English that can leverage LLM capabilities for automation and tool usage. The technique uses the '-S' option with env to handle arguments properly, supports YAML templates with custom Python functions as tools, and includes debugging options like '--td' for tool call visualization.
+Simon Willison demonstrates how to use the llm command-line tool directly in shebang lines of shell scripts, enabling LLMs to process natural language prompts within executable scripts using fragments and tool call capabilities. This technique bridges traditional shell scripting with AI capabilities, allowing developers to create more intelligent automation workflows where LLMs can interpret natural language commands and perform complex tasks including calculations, API calls, and data processing. The approach uses the -S flag with env to handle multi-argument commands, supports fragments with -f flag for direct prompt processing, and enables tool calls with -T flag for executing external functions like time retrieval or custom Python functions defined in YAML templates.
 
 rss · Simon Willison · May 11, 18:48
 
-**Background**: A shebang line (#!) at the beginning of Unix scripts tells the operating system which interpreter to use to execute the script. The llm tool is a command-line interface for interacting with large language models, created by Simon Willison, which supports fragments for reusable prompt components and tool calling for executing external functions. Tool calling allows LLMs to invoke external functions or APIs as part of their response generation process.
+**Background**: A shebang line (#!) at the beginning of Unix scripts tells the system which interpreter to use to execute the file. The llm command-line tool by Simon Willison allows interaction with various large language models via APIs or local installations. Tool calling is a feature that enables LLMs to invoke external functions or APIs to perform specific tasks beyond pure text generation.
 
 <details><summary>References</summary>
 <ul>
-<li><a href="https://grokipedia.com/page/LLM_command-line_tool">LLM (command-line tool)</a></li>
-<li><a href="https://llm.datasette.io/en/stable/fragments.html">Fragments - LLM</a></li>
-<li><a href="https://symflower.com/en/company/blog/2025/function-calling-llm-agents/">Function calling in LLM agents</a></li>
+<li><a href="https://github.com/simonw/llm">GitHub - simonw/llm: Access large language models from the ...</a></li>
+<li><a href="https://llm.datasette.io/en/stable/fragments.html">Fragments - LLM - Datasette</a></li>
+<li><a href="https://www.geeksforgeeks.org/artificial-intelligence/function-calling-in-llms/">Function calling in LLMs - GeeksforGeeks</a></li>
 
 </ul>
 </details>
 
-**Tags**: `#llm`, `#shell-scripting`, `#automation`, `#cli-tools`, `#ai-integration`
+**Tags**: `#LLM`, `#shell-scripting`, `#automation`, `#CLI-tools`, `#productivity`
 
 ---
